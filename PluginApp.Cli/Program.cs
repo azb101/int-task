@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using PluginApp.Core.PluginDiscovery;
 
 namespace PluginApp.Cli
 {
@@ -6,7 +8,8 @@ namespace PluginApp.Cli
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var pluginScanner = new PluginScanner();
+            pluginScanner.Scan(Path.Combine(Directory.GetCurrentDirectory(), "plugins"));
         }
     }
 }
