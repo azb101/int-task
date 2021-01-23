@@ -20,7 +20,7 @@ namespace PluginApp.Core.PluginDiscovery
 
                 foreach(var type in assembly.GetTypes()) {
                     if(targetType.IsAssignableFrom(type)) {
-                        // plugins.Add(type);
+                        plugins.Add(type.ToString(), type);
                     }
                 }
             }            

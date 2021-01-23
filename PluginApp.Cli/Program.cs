@@ -9,7 +9,12 @@ namespace PluginApp.Cli
         static void Main(string[] args)
         {
             var pluginScanner = new PluginScanner();
-            pluginScanner.Scan(Path.Combine(Directory.GetCurrentDirectory(), "plugins"));
+            var plugins = pluginScanner.Scan(Path.Combine(Directory.GetCurrentDirectory(), "plugins"));
+
+            foreach(var plug in plugins) {
+                var activatedPlugin = (Core.IPlugin)Activator.CreateInstance(plug.Value);
+                Console.WriteLine(activatedPlugin.Execute("abc"));
+            }
         }
     }
 }

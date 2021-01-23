@@ -9,7 +9,7 @@ namespace ReversePlugin
             var syms = input.ToCharArray();
 
             int i=0; 
-            int j=syms.Length;
+            int j=syms.Length-1;
 
             while(i < j) {
                 var temp = syms[i];
