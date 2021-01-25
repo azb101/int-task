@@ -1,4 +1,4 @@
-namespace PluginApp.Core.PluginResolving
+namespace PluginApp.Core.PluginDiscovery
 {
     public interface IPluginResolver
     {
