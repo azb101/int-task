@@ -7,15 +7,21 @@ namespace PluginApp.Core.PluginDiscovery
 {
     public class PluginScanner : IPluginScanner
     {
-        public Dictionary<string, Type> Scan(string path)
+        private readonly string PluginDirectory;
+
+        public PluginScanner(string pluginDirectory) {
+            this.PluginDirectory = pluginDirectory;
+        }
+
+        public Dictionary<string, Type> Scan()
         {
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(PluginDirectory))
                 throw new Exception("Invalid path");
             
             var plugins = new Dictionary<string, Type>();
             var targetType = typeof(IPlugin);
 
-            foreach(var assemblyPath in Directory.GetFiles(path, "*.dll")) {
+            foreach(var assemblyPath in Directory.GetFiles(PluginDirectory, "*.dll")) {
                 var assembly = Assembly.LoadFile(assemblyPath);
 
                 foreach(var type in assembly.GetTypes()) {

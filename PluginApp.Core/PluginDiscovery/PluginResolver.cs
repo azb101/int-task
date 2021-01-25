@@ -7,7 +7,6 @@ namespace PluginApp.Core.PluginDiscovery
 {
     public class PluginResolver : IPluginResolver
     {
-        private const string PluginsDirectory = "plugins";
         private readonly Dictionary<Type, IPlugin> SingletonContainer = new Dictionary<Type, IPlugin>();
 
         private readonly IPluginScanner pluginScanner;
@@ -18,7 +17,7 @@ namespace PluginApp.Core.PluginDiscovery
 
         public IPlugin Resolve(string pluginName)
         {
-            var plugins = pluginScanner.Scan(PluginsDirectory);
+            var plugins = pluginScanner.Scan();
             if(!plugins.ContainsKey(pluginName))
                 throw new System.Exception($"Plugin {pluginName} is not found or not registered");
             
